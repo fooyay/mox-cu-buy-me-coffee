@@ -6,12 +6,7 @@
 @notice This contract is for creating a sample funding contract
 """
 
-# We'll learn a new way to do interfaces later...
-interface AggregatorV3Interface:
-    def decimals() -> uint8: view
-    def description() -> String[1000]: view
-    def version() -> uint256: view
-    def latestAnswer() -> int256: view
+from interfaces import AggregatorV3Interface
 
 # Constants & Immutables
 MINIMUM_USD: public(constant(uint256)) = as_wei_value(5, "ether")
