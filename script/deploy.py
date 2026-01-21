@@ -6,21 +6,21 @@ from script.deploy_mocks import deploy_price_feed
 from moccasin.boa_tools import VyperContract  # type: ignore
 
 
-def deploy_coffee(price_feed: str):
+def deploy_coffee(price_feed: str) -> VyperContract:
     print("Deploying Buy Me Coffee contract...")
-    buy_me_coffee.deploy(price_feed)
+    coffee: VyperContract = buy_me_coffee.deploy(price_feed)
+
+    active_network = get_active_network()
+    if active_network.has_explorer():
+        print("Verifying on explorer...")
+        result = active_network.moccasin_verify(coffee)
+        result.wait_for_verification()
+        print(f"Verification result: {result}")
+    return coffee
 
 
-def moccasin_main():
+def moccasin_main() -> VyperContract:
     active_network = get_active_network()
     price_feed: VyperContract = active_network.manifest_named("price_feed")
     print(f"Using price feed at {price_feed.address} on {active_network.name}")
-    # price_feed: VyperContract = deploy_price_feed()
-    # coffee = buy_me_coffee.deploy(price_feed)
-    # print(f"Deployed Buy Me Coffee contract to {coffee.address} on {active_network.name}")
-
-    # pick the correct price feed based on network
-
-    # test on pyevm network
-
-    # deploy_coffee(price_feed)
+    return deploy_coffee(price_feed)
