@@ -17,3 +17,6 @@ mox test
 ```
 
 _For documentation, please run `mox --help` or visit [the Moccasin documentation](https://cyfrin.github.io/moccasin)_
+
+## Workshops
+For the mid-lesson workshop, created a complex test, "test_multiple_funders_and_withdraw"
