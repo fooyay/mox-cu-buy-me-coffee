@@ -10,10 +10,13 @@ SEND_VALUE = to_wei(0.001, "ether")
 
 # note if you're running this test, it's on sepolia, which means
 # SEND_VALUE should be a lot smaller and you need that balance
+# however, SEND_VALUE must still be above the minimum USD amount, so you
+# may need to adjust it based on the current ETH/USD price
 
 # also you probably should comment out the verification part of deploy_coffee for local testing
 
 
+@pytest.mark.skip(reason="Staging test, run manually")
 @pytest.mark.staging
 @pytest.mark.local
 @pytest.mark.ignore_isolation

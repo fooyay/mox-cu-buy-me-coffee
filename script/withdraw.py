@@ -1,4 +1,4 @@
-from src import buy_me_coffee
+# from src import buy_me_coffee
 from moccasin.config import get_active_network  # type: ignore
 
 

@@ -25,7 +25,7 @@ def test_fund_fails_with_insufficient_eth(coffee):
 
 
 def test_fund_with_money(coffee, default_account):
-    boa.env.set_balance(default_account.address, SEND_VALUE)
+    boa.env.set_balance(default_account.address, SEND_VALUE * 2)
     coffee.fund(value=SEND_VALUE)
     funder = coffee.funders(0)
     assert funder == default_account.address
@@ -50,7 +50,7 @@ def test_multiple_funders_and_withdraw(coffee):
     # fund the contract with 10 different accounts
     for i in range(10):
         funder = boa.env.generate_address(f"funder-{i}")
-        boa.env.set_balance(funder, SEND_VALUE)
+        boa.env.set_balance(funder, SEND_VALUE * 2)
         with boa.env.prank(funder):
             coffee.fund(value=SEND_VALUE)
 
