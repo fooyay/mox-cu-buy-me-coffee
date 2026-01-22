@@ -11,7 +11,7 @@ def deploy_coffee(price_feed: str) -> VyperContract:
     coffee: VyperContract = buy_me_coffee.deploy(price_feed)
 
     active_network = get_active_network()
-    if active_network.has_explorer():
+    if active_network.has_explorer() and not active_network.is_local_or_forked_network():
         print("Verifying on explorer...")
         result = active_network.moccasin_verify(coffee)
         result.wait_for_verification()

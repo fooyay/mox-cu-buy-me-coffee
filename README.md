@@ -16,6 +16,11 @@ mox run deploy
 mox test
 ```
 
+3. Run tests on a forked network
+```
+mox test --network sepolia --fork
+```
+
 _For documentation, please run `mox --help` or visit [the Moccasin documentation](https://cyfrin.github.io/moccasin)_
 
 ## Workshops
