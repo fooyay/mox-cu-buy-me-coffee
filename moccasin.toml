@@ -4,6 +4,15 @@ src = "src"
 [networks.contracts.price_feed]
 deployer_script = "script/deploy_mocks.py"
 
+[networks.contracts.buy_me_coffee]
+deployer_script = "script/deploy.py"
+
+[networks.anvil]
+url = "http://127.0.0.1:8545"
+default_account_name = "anvil0"
+save_to_db = true
+
+
 [networks.sepolia]
 url = "${SEPOLIA_RPC_URL}"
 save_to_db = false

@@ -25,3 +25,6 @@ _For documentation, please run `mox --help` or visit [the Moccasin documentation
 
 ## Workshops
 For the mid-lesson workshop, created a complex test, "test_multiple_funders_and_withdraw"
+
+## Notes
+To view the .deployments.db, add the SQLite Viewer extension to VSCode.
