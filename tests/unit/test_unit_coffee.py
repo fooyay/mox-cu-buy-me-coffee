@@ -64,3 +64,11 @@ def test_multiple_funders_and_withdraw(coffee):
     # assert the balance of the owner is the sum of all the funded amounts
     expected_balance = starting_balance + (SEND_VALUE * 10)
     assert boa.env.get_balance(coffee.OWNER()) == expected_balance
+
+
+def test_get_eth_to_usd_rate(coffee):
+    eth_amount = to_wei(1, "ether")
+    usd_rate = coffee.get_eth_to_usd_rate(eth_amount)
+    # Since the mock price feed is set to $2000 per ETH with 8 decimals
+    expected_usd_rate = 2000 * (10**18)
+    assert usd_rate == expected_usd_rate
