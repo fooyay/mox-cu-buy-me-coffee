@@ -72,3 +72,25 @@ def test_get_eth_to_usd_rate(coffee):
     # Since the mock price feed is set to $2000 per ETH with 8 decimals
     expected_usd_rate = 2000 * (10**18)
     assert usd_rate == expected_usd_rate
+
+
+def test_sending_eth_directly_to_contract(coffee):
+    boa.env.set_balance(RANDOM_USER, SEND_VALUE * 2)
+
+    with boa.env.prank(RANDOM_USER):
+        boa.env.raw_call(coffee.address, data=b"", value=SEND_VALUE)
+
+    funder = coffee.funders(0)
+    assert funder == RANDOM_USER
+    assert coffee.funder_to_amount_funded(funder) == SEND_VALUE
+
+
+def test_calling_default(coffee):
+    boa.env.set_balance(RANDOM_USER, SEND_VALUE * 2)
+
+    with boa.env.prank(RANDOM_USER):
+        coffee.__default__(value=SEND_VALUE)
+
+    funder = coffee.funders(0)
+    assert funder == RANDOM_USER
+    assert coffee.funder_to_amount_funded(funder) == SEND_VALUE
